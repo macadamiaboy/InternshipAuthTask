@@ -11,11 +11,14 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.2].define(version: 2025_02_21_104131) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "schoolclasses", force: :cascade do |t|
     t.string "letter"
     t.integer "number"
     t.integer "students_count"
-    t.integer "school_id", null: false
+    t.bigint "school_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["school_id"], name: "index_schoolclasses_on_school_id"
@@ -30,8 +33,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_02_21_104131) do
     t.string "first_name"
     t.string "last_name"
     t.string "surname"
-    t.integer "schoolclass_id", null: false
-    t.integer "school_id", null: false
+    t.bigint "schoolclass_id", null: false
+    t.bigint "school_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["school_id"], name: "index_students_on_school_id"
