@@ -1,4 +1,5 @@
 class SchoolclassesController < ApplicationController
+  skip_before_action :authorized
   before_action :set_school!
 
   def index
