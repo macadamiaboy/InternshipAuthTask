@@ -16,7 +16,7 @@ Three classes (class Schoolclass):
 
 Three students (class Student):
 * id: 1, first_name: 'Павел', last_name: 'Сергеевич', surname: 'Тетюхин', school_id: 1, schoolclass_id: 1
-* id: 2, first_name: 'Алина', last_name: null, surname: 'Пязок', school_id: 1, schoolclass_id: 1
+* id: 2, first_name: 'Алина', last_name: 'Вячеславовна', surname: 'Пязок', school_id: 1, schoolclass_id: 1
 * id: 3, first_name: 'Александр', last_name: 'Павлович', surname: 'Шилоносов', school_id: 2, schoolclass_id: 3
 
 All requests are carrying out in accordance with the technical specifications, given in the task.
