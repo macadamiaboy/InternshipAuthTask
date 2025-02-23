@@ -35,7 +35,7 @@ unless Student.exists?
   Student.create(first_name: 'Павел', last_name: 'Сергеевич', surname: 'Тетюхин', school_id: 1, schoolclass_id: 1)
 
   #2nd student
-  Student.create(first_name: 'Алина', surname: 'Пязок', school_id: 1, schoolclass_id: 1)
+  Student.create(first_name: 'Алина', last_name: 'Вячеславовна', surname: 'Пязок', school_id: 1, schoolclass_id: 1)
 
   #3rd student
   Student.create(first_name: 'Александр', last_name: 'Павлович', surname: 'Шилоносов', school_id: 2, schoolclass_id: 3)

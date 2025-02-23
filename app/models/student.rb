@@ -4,6 +4,7 @@ class Student < ApplicationRecord
 
   #No length check in case of korean students)
   validates :first_name, presence: true
+  validates :last_name, presence: true
   validates :surname, presence: true
   validates :school_id, presence: true
   validates :schoolclass_id, presence: true
