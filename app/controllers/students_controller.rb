@@ -12,6 +12,8 @@ class StudentsController < ApplicationController
   end
 
   def create
+    
+
     unless School.exists?(id: student_params[:school_id]) && Schoolclass.exists?(id: student_params[:schoolclass_id])
       render json: "There's no such school or class", status: :method_not_allowed
       return
@@ -26,7 +28,7 @@ class StudentsController < ApplicationController
     if student.save
       token = encode_token(student_id: student.id)
       response.headers['X-Auth-Token'] = token
-      render json: "Success", status: :created
+      render json: student, status: :created
     else
       render json: "Invalid input data. Check and try again", status: :method_not_allowed
     end
@@ -43,15 +45,15 @@ class StudentsController < ApplicationController
   private
 
   def student_params
-    params.permit(:first_name, :last_name, :surname, :schoolclass_id, :school_id)
+    params.require(:student).permit(:first_name, :last_name, :surname, :schoolclass_id, :school_id)
   end
 
   def set_school!
-    @school = School.find student_params[:school_id]
+    @school = School.find params[:school_id]
   end
 
   def set_schoolclass!
-    @schoolclass = @school.schoolclasses.find student_params[:schoolclass_id]
+    @schoolclass = @school.schoolclasses.find params[:schoolclass_id]
   end
 
   def set_student!

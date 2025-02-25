@@ -22,3 +22,5 @@ Three students (class Student):
 All requests are carrying out in accordance with the technical specifications, given in the task.
 You should take into account that due to rails features it wasn't possible to name class Class, so it was renamed Schoolclass.
 That's why two GET request routes are /schools/[school_id]/schoolclasses and /schools/[school_id]/schoolclasses/[schoolclass_id]/students.
+
+.env file was added to github and removed from .gitignore due to requirement to start the app with docker compose up
