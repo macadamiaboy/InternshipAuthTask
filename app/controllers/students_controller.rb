@@ -12,13 +12,7 @@ class StudentsController < ApplicationController
   end
 
   def create
-    
-
-    unless School.exists?(id: student_params[:school_id]) && Schoolclass.exists?(id: student_params[:schoolclass_id])
-      render json: "There's no such school or class", status: :method_not_allowed
-      return
-    end
-
+    #to avoid the case of saving correct ids but not id of the class that is not connected to mentioned school
     unless School.find(student_params[:school_id]).schoolclasses.include? Schoolclass.find(student_params[:schoolclass_id])
       render json: "There's no such class in that school", status: :method_not_allowed
       return
@@ -32,6 +26,10 @@ class StudentsController < ApplicationController
     else
       render json: "Invalid input data. Check and try again", status: :method_not_allowed
     end
+
+  #handling RecordNotFound for checking existance of the class in the school
+  rescue ActiveRecord::RecordNotFound
+    render json: "There's no such school or class", status: :method_not_allowed
   end
 
   def destroy
@@ -48,19 +46,20 @@ class StudentsController < ApplicationController
     params.require(:student).permit(:first_name, :last_name, :surname, :schoolclass_id, :school_id)
   end
 
+  #here goes 404
   def set_school!
     @school = School.find params[:school_id]
   end
 
+  #here goes 404
   def set_schoolclass!
     @schoolclass = @school.schoolclasses.find params[:schoolclass_id]
   end
 
+  #400 bad request
   def set_student!
-    if Student.exists?(id: params[:id])
-      @student_to_delete = Student.find params[:id]
-    else
-      render json: "Incorrect student's id", status: :bad_request
-    end
+    @student_to_delete = Student.find params[:id]
+  rescue ActiveRecord::RecordNotFound
+    render json: "Incorrect student's id", status: :bad_request
   end
 end
